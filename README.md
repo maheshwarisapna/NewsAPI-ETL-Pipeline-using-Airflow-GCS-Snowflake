@@ -111,21 +111,21 @@
 
 
 #### 3. Storage Integration in Snowflake
--- Create Storage Integration
-CREATE OR REPLACE STORAGE INTEGRATION gcs_snowflake_integration
-  TYPE = EXTERNAL_STAGE
-  STORAGE_PROVIDER = GCS
-  ENABLED = TRUE
-  STORAGE_ALLOWED_LOCATIONS = ('gcs://<your-bucket-name>');
-
--- Get Service Account (to whitelist in GCS)
-DESC STORAGE INTEGRATION gcs_snowflake_integration;
+      -- Create Storage Integration
+      CREATE OR REPLACE STORAGE INTEGRATION gcs_snowflake_integration
+        TYPE = EXTERNAL_STAGE
+        STORAGE_PROVIDER = GCS
+        ENABLED = TRUE
+        STORAGE_ALLOWED_LOCATIONS = ('gcs://<your-bucket-name>');
+      
+      -- Get Service Account (to whitelist in GCS)
+      DESC STORAGE INTEGRATION gcs_snowflake_integration;
 
 #### 4. External Stage in Snowflake
-CREATE OR REPLACE STAGE news_stage
-  URL = 'gcs://<your-bucket-name>/news-data/'
-  STORAGE_INTEGRATION = gcs_snowflake_integration
-  FILE_FORMAT = (TYPE = JSON);
+      CREATE OR REPLACE STAGE news_stage
+        URL = 'gcs://<your-bucket-name>/news-data/'
+        STORAGE_INTEGRATION = gcs_snowflake_integration
+        FILE_FORMAT = (TYPE = JSON);
 
 #### 5. Airflow DAG
   - Place the DAG Python file inside the Composer environment’s dags/ folder (in the assigned GCS bucket).
