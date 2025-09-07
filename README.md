@@ -7,7 +7,7 @@
 1. Python → API extraction & file writing
     
     
-2. NewsAPI.org → Source of live news data
+2. [NewsAPI.org](https://newsapi.org/) → Source of live news data
     
     
 3. Google Cloud Storage (GCS) → Landing zone for raw data files
